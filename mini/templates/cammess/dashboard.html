@@ -1,0 +1,27 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+    <header>
+        
+        <img src="logo.png" alt="College Logo" id="logo">
+        <h1> Campus Mess Management</h1>
+    </header>
+    
+    <div id="user-buttons">
+        <h2>Welcome to Mess</h2>
+    
+        <a href="{% url 'mess_menu' %" class="user-button">Menu</a><br>
+        
+        <a href="{% url 'seat_reservation' %}" class="user-button">Reservation & Occupancy</a>
+    </div>
+
+    
+   
+</body>
+</html>

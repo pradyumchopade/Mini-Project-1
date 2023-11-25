@@ -1,0 +1,55 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Menu Display</title>
+    <link rel="stylesheet" href="menu_display.css">
+</head>
+<body>
+    <div class="calendar">
+        <div class="current-day">{{ today|date:"l" }}</div>
+        <div class="calendar-week">
+            {% for day in week_start|date:"D" %}
+                <div class="day">{{ day }}</div>
+                {% with week_start|add:1 as week_start %}
+            {% endfor %}
+        </div>
+    </div>
+    <div class="menu">
+        <div class="menu-highlight">
+            <h2>{{ menu_items.0.name }}</h2>
+            <img src="{{ menu_items.0.image.url }}" alt="{{ menu_items.0.name }} Image">
+            <div class="menu-time">
+                <select id="menu-time">
+                    <option value="breakfast">Breakfast</option>
+                    <option value="lunch">Lunch</option>
+                    <option value="snacks">Snacks</option>
+                    <option value="dinner">Dinner</option>
+                </select>
+                <div class="menu-items">
+                    {% for item in menu_items %}
+                        <div class="menu-item">
+                            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+                            <p>{{ item.name }}</p>
+                            <p>{{ item.description }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Feedback Form -->
+    <div class="feedback-form">
+        <h3>Menu Feedback</h3>
+        <form method="post" action="{% url 'menu_feedback' %}">
+            {% csrf_token %}
+            <label for="feedback">Please provide your feedback:</label>
+            <textarea id="feedback" name="feedback" rows="4" cols="50"></textarea>
+            <br>
+            <input type="submit" value="Submit Feedback">
+        </form>
+    </div>
+</body>
+</html>

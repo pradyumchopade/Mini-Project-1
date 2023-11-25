@@ -1,0 +1,25 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to Campus Mess Management</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        
+        <img src="logo.png" alt="College Logo" id="logo">
+        <h1> Campus Mess Management</h1>
+    </header>
+    <div id="user-buttons">
+    
+        <a href="{% url 'admin_login' %}" class="user-button">Admin</a>
+        
+        <a href="{% url 'hostler_login' %}" class="user-button">Hostler</a>
+        
+        <a href="{% url 'guest_login' %}" class="user-button">Guest</a>
+        
+    </div>
+</body>
+</html>

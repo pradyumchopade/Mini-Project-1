@@ -1,0 +1,104 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Payment</h1>
+    <form id="payment-form">
+        <div class="form-row">
+            <label for="payment-method">
+                Payment Method
+            </label>
+            <select id="payment-method" name="payment-method">
+                <option value="card">Credit/Debit Card</option>
+                <option value="upi">UPI</option>
+                <option value="wallet">Wallet</option>
+            </select>
+        </div>
+        <div id="card-element" class="payment-element">
+            <label for="card-element">
+                Credit or debit card
+            </label>
+            <div id="card-element">
+                <!-- A Stripe Element will be inserted here. -->
+            </div>
+            <!-- Used to display form errors. -->
+            <div id="card-errors" role="alert"></div>
+        </div>
+        <div id="upi-element" class="payment-element" style="display: none;">
+            <label for="upi-details">
+                UPI Details
+            </label>
+            <input type="text" id="upi-details" name="upi-details">
+        </div>
+        <div id="wallet-element" class="payment-element" style="display: none;">
+            <label for="wallet-details">
+                Wallet Details
+            </label>
+            <input type="text" id="wallet-details" name="wallet-details">
+        </div>
+        <button id="submit">
+            Pay
+        </button>
+    </form>
+    
+    <script>
+        var stripe = Stripe('{{ settings.STRIPE_PUBLISHABLE_KEY }}');
+        var elements = stripe.elements();
+        var cardElement = elements.create('card');
+        cardElement.mount('#card-element');
+
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            var paymentMethod = document.getElementById('payment-method').value;
+
+            if (paymentMethod === 'card') {
+                // Handle credit/debit card payment with Stripe
+                stripe.confirmCardPayment("{{ client_secret }}", {
+                    payment_method: {
+                        card: cardElement,
+                    },
+                }).then(function(result) {
+                    if (result.error) {
+                        // Show any errors to your customer
+                        var errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = result.error.message;
+                    } else {
+                        // Payment succeeded, handle seat reservation logic here
+                        // Generate QR code and proceed to the confirmation page
+                    }
+                });
+            } else if (paymentMethod === 'upi') {
+                // Handle UPI payment
+                var upiDetails = document.getElementById('upi-details').value;
+                // Implement UPI payment logic
+            } else if (paymentMethod === 'wallet') {
+                // Handle wallet payment
+                var walletDetails = document.getElementById('wallet-details').value;
+                // Implement wallet payment logic
+            }
+        });
+
+        document.getElementById('payment-method').addEventListener('change', function() {
+            var paymentMethod = this.value;
+            var paymentElements = document.getElementsByClassName('payment-element');
+            for (var i = 0; i < paymentElements.length; i++) {
+                paymentElements[i].style.display = 'none';
+            }
+
+            if (paymentMethod === 'card') {
+                document.getElementById('card-element').style.display = 'block';
+            } else if (paymentMethod === 'upi') {
+                document.getElementById('upi-element').style.display = 'block';
+            } else if (paymentMethod === 'wallet') {
+                document.getElementById('wallet-element').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>

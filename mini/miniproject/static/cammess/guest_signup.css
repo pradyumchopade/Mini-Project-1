@@ -1,0 +1,108 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    background: linear-gradient(to bottom, #3d058d, rgba(10, 32, 95, 0));
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+}
+
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+logo {
+    max-width: 100px;
+}
+
+h1 {
+    font-size: 30px;
+    color: #310087;
+    text-shadow: 0px 3px 4px #0e0e0e;
+}
+
+.form-box {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px 20px; /* Decreased the padding to reduce height */
+    width: 250px;
+    text-align: left; /* Align text to the left within the form box */
+    margin-top: 20px;
+}
+
+.signup-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #0e0e0e;
+    text-align: center; /* Center the "Sign Up" text */
+    text-decoration: underline; /* Underline "Sign Up" */
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: left; /* Align text to the left within form groups */
+}
+
+.form-group label {
+    text-align: left;
+}
+
+.form-box input[type="text"],
+.form-box input[type="password"],
+.form-box input[type="tel"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.signup-button {
+    background-color: #00ff00;
+    color: #0b0101;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 3px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+.signup-button:hover {
+    background-color: #0056b3;
+}
+
+/* Logo Styling */
+#logo {
+    max-width: 100px;
+}
+
+/* Add this CSS to your existing styles */
+.signin-link {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    color: #007BFF; /* Change the link color as needed */
+    margin-top: 10px; /* Adjust the margin for spacing */
+}
+
+.signin-link:hover {
+    color: #0056b3; /* Change the hover color as needed */
+}
+
+
+/* Rest of your existing CSS styles... */

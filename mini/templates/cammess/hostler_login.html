@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hostler Sign-In</title>
+    <link rel="stylesheet" href="hostler_login.css">
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="College Logo" id="logo">
+        <h1> Campus Mess Management</h1>
+    </header>
+    <div class="form-box">
+        <h2>Sign-In</h2>
+        <form method="post" action="{% url 'hostler_login' %}">
+            {% csrf_token %}
+            <label for="enrollment_number">Enrollment Number:</label>
+            <input type="text" name="enrollment_number" required><br>
+
+            <label for="password">Password:</label>
+            <input type="password" name="password" required><br>
+
+            <button type="button"><a href="{% url 'dashboard' %}">Sign In</a></button><br>
+
+            <a href="{% url 'hostler_signup' %}" class="signup-link">Not a member? Sign Up</a>
+        
+        </form>
+    </div>
+</body>
+</html>

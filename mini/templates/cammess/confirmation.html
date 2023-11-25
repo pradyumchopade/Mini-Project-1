@@ -1,0 +1,13 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmation</title>
+</head>
+<body>
+    <h1>Reservation Confirmation</h1>
+    <p>Your reservation ID is: {{ reservation_id }}</p>
+    <img src="{% url 'generate_qr_code' reservation_id %}" alt="QR Code for Reservation">
+</body>
+</html>

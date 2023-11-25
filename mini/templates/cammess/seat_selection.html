@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Seat Selection</title>
+</head>
+<body>
+    <h1>Select Seats</h1>
+    <form method="post">
+        {% csrf_token %}
+        {% for seat in seats %}
+            <label for="seat_{{ seat.id }}">
+                <input type="checkbox" name="selected_seats" id="seat_{{ seat.id }}" value="{{ seat.id }}" {% if seat.is_booked %}disabled{% endif %}>
+                {{ seat.unique_identifier }}
+            </label>
+        {% endfor %}
+        <input type="submit" value="Reserve Selected Seats">
+    </form>
+</body>
+</html>
